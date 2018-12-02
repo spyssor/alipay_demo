@@ -92,13 +92,13 @@ public class Main {
         //        main.test_trade_pay(tradeService);
 
         // 测试查询当面付2.0交易
-        //        main.test_trade_query();
+                main.test_trade_query();
 
         // 测试当面付2.0退货
         //        main.test_trade_refund();
 
         // 测试当面付2.0生成支付二维码
-        main.test_trade_precreate();
+//        main.test_trade_precreate();
     }
 
     // 测试系统商交易保障调度
@@ -286,7 +286,7 @@ public class Main {
     // 测试当面付2.0查询订单
     public void test_trade_query() {
         // (必填) 商户订单号，通过此商户订单号查询当面付的交易状态
-        String outTradeNo = "tradepay14817938139942440181";
+        String outTradeNo = "huyufan123123";
 
         // 创建查询请求builder，设置请求参数
         AlipayTradeQueryRequestBuilder builder = new AlipayTradeQueryRequestBuilder()
@@ -369,8 +369,7 @@ public class Main {
     public void test_trade_precreate() {
         // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
         // 需保证商户系统端不能重复，建议通过数据库sequence生成，
-        String outTradeNo = "tradeprecreate" + System.currentTimeMillis()
-                            + (long) (Math.random() * 10000000L);
+        String outTradeNo = "huyufan123123";
 
         // (必填) 订单标题，粗略描述用户的支付目的。如“xxx品牌xxx门店当面付扫码消费”
         String subject = "xxx品牌xxx门店当面付扫码消费";
@@ -432,10 +431,11 @@ public class Main {
                 dumpResponse(response);
 
                 // 需要修改为运行机器上的路径
-                String filePath = String.format("/Users/sudo/Desktop/qr-%s.png",
+                String filePath = String.format("C:/Users/Spyssor.Hu/Desktop/qrcode/qr-%s.png",
                     response.getOutTradeNo());
                 log.info("filePath:" + filePath);
-                //                ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);
+                //生成二维码
+                ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);
                 break;
 
             case FAILED:
